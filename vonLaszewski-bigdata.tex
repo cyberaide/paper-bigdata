@@ -1,4 +1,27 @@
-\documentclass{article}
+\documentclass[graybox]{svmult}
+
+% choose options for [] as required from the list
+% in the Reference Guide
+
+\usepackage{mathptmx}       % selects Times Roman as basic font
+\usepackage{helvet}         % selects Helvetica as sans-serif font
+\usepackage{courier}        % selects Courier as typewriter font
+\usepackage{type1cm}        % activate if the above 3 fonts are
+                            % not available on your system
+%
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                             % when including figure files
+\usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+
+% see the list of further useful packages
+% in the Reference Guide
+
+\makeindex             % used for the subject index
+                       % please use the style svind.ist with
+                       % your makeindex program
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -13,22 +36,17 @@
 \usepackage{booktabs}
 \usepackage{pifont}
 \usepackage{todonotes}
-\usepackage{rotating}
 \usepackage{color}
 \usepackage{afterpage}
 \usepackage{amssymb}
 \usepackage{latexsym}
 
+\usepackage[figuresright]{rotating}
+\setlength{\rotFPtop}{0pt plus 1fil}
 
 \newcommand*\rot{\rotatebox{90}}
 
 
-%\newcommand{\FILE}[1]{\todo[color=green!40]{#1}}
-
-
-
-
-\newcommand{\FILE}[1]{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -37,17 +55,17 @@
 
 
 \newcommand{\TITLE}{The FutureGrid Testbed for Big Data}
-\newcommand{\AUTHOR}{Gregor von Laszewsi, Geoffrey C. Fox}
+\newcommand{\AUTHOR}{Gregor von Laszewski, Geoffrey C. Fox}
 \newcommand{\EMAIL}{laszewski@gmail.com}
-\newcommand{\DISCLAIMER}{{\em\footnotesize Discalimer: This paper is submitted under the understanding that the bookchapter to be published will include in the chapter under the title also the names of the authors.}}
+\newcommand{\DISCLAIMER}{{\em\footnotesize Disclaimer: This paper is submitted under the understanding that the book chapter to be published will include in the chapter under the title also the names of the authors.}}
 
 \begin{document}
 
 
-\title{\TITLE}
+\title*{\TITLE}
 \author{\AUTHOR}
 \date{\EMAIL\\\DISCLAIMER}
-
+\institute{INstitute}
 
 
 
@@ -56,20 +74,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\pagenumbering{roman}
+%\pagenumbering{roman}
 
 
-\begin{center}
-{\Large\bf \TITLE}\\
-{\AUTHOR}\\
-{\EMAIL}
-\end{center}
+%\begin{center}
+%{\Large\bf \TITLE}\\
+%{\AUTHOR}\\
+%{\EMAIL}
+%\end{center}
 
 
-\tableofcontents
-
-
-\newpage
+%\tableofcontents
+%\newpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -86,10 +102,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TITLE OF PAPER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\pagenumbering{arabic}
-
+%\pagenumbering{arabic}
 
 \maketitle
 
@@ -98,24 +111,21 @@
 % ABSTRACT OF PAPER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newcommand{\ABSTRACT}{In this chapter we will be introducing you to FutureGrid, which provides a testbed to conduct research for Cloud, Grid, and High Performance Computing. Although FutureGrid has only a modest number of compute cores (about 4500 regular cores and 14000 GPU cores) it provides an ideal playground to test out various frameworks that may be useful for users to consider as part of their big data analysis pipelines. We will be focusing here on the use of FutureGrid for big data related testbed research.
+%
+The chapter is structured as follows. First we will provide the reader with an introduction to FutureGrid hardware (Section \ref{S:overview}).   Next we will focus on a selected number of services and tools that have been proven to be useful to conduct big data research on FutureGrid (Section \ref{S:services}). We will contrast frameworks such as MPI, virtual large memory systems, Infrastructure as a Service and map/reduce frameworks. Next we will present reasoning by analyzing requests to use certain technologies and identify trends within the user community to direct effort in FutureGrid (Section \ref{S:usage}). The next section will report on our experience with the integration of our software and systems teams via DevOps (Section \ref{S:devops}). Next we summarize Cloudmesh, which is a logical continuation of the FutureGrid architecture. It  provides abilities to federate cloud services and to conduct cloud shifting; that is to assign servers on-demand to HPC and Cloud services (Section \ref{S:cloudmesh}). We conclude the chapter with a brief summary (Section \ref{S:summary}).
+}
 
+\abstract*{\ABSTRACT}
 
+\abstract{\ABSTRACT}
 
-\begin{abstract}
-
-In this chapter we will be introducing you to FutureGrid, which provides a testbed to conduct research for Cloud, Grid, and High Performance Computing. Although FutureGrid has only a modest number of compute cores (about 4500 regular cores and 14000 GPU cores) it provides an ideal playground to test out various frameworks that may be useful for users to consider as part of their big data analysis pipelines. We will be focusing here on the use of FutureGrid for big data related testbed research.
-
-
-The chapter is structured as follows. First we will provide the reader with an introduction to FutureGrid hardware (Section \ref{S:overview}).   Next we will focus on a selected number of services and tools that have been proven to be useful to conduct big data research on FutureGrid (Section \ref{S:services}). We will contrast frameworks such as MPI, virtual large memory systems, Infrastructure as a Service and map/reduce frameworks. Next we will present reasoning by analyzing requests to use certain technologies and identify trends within the user community to direct effort in FutureGrid (Section \ref{S:usage}). The next section will report on our experience with the integration of our software and systems teams via DevOps (Section \ref{S:devops}). Next we summarize Cloudmesh, which is a logical continuation of the FutureGrid architecture. It  provides abilities to federate cloud services and to conduct cloudshifting; that is to assign servers on-demand to HPC and Cloud services (Section \ref{S:cloudmesh}). We conclude the chapter with a brief summary (Section \ref{S:summary}).
-\end{abstract}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTIONS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\FILE{introduction.tex}
 
 
 \section{Introduction}
@@ -129,9 +139,6 @@ FutureGrid \cite{las2010gce,las12fg-bookchapter}``is a project led by Indiana Un
 
 
 \section{Overview of FutureGrid}\label{S:overview}
-
-
-\FILE{hardware.tex}
 
 
 \subsection{Hardware Overview}
@@ -194,6 +201,7 @@ A Spirent H10 XGEM Network Impairment emulator \cite{www-network-impairment} can
 In addition we have added several components that are related to a special software service called Cloudmesh, which we explain in more detail in Section~\ref{S:cloudmesh}. 
 
 
+
 \begin{figure}[htb]
   \centering
     \includegraphics[width=1.0\textwidth]{images/fg-network-2014-cm.pdf}
@@ -230,7 +238,6 @@ IBM dx360 M3  & 24  & NFS  & UF \tabularnewline
 
 
 
-\FILE{services.tex}
 \section{Services and Tools for Big Data}\label{S:services}
 
 
@@ -291,8 +298,7 @@ The IaaS services that are offered in FutureGrid contain the following:
 \item [OpenStack] has become most recently, next to HPC, the most requested service in FutureGrid based on newly started projects. OpenStack is an open source cloud infrastructure as a service framework to deliver public and private clouds. It contains a number of components that together build a powerful and flexible set to create a cloud service offering. Services include a compute service, and object storage, an image service, a monitoring service, and an orchestration service. OpenStack has received considerable momentum due to its openness and the support of companies. Within FutureGrid OpenStack clouds are currently deployed on India, Sierra, Hotel, and Alamo, while currently India provides the most up to date services.  
 
 
-\item [Nimbus] is an open source service package allowing users to run virtual machines on FutureGrid hardware. Just as in Openstack users can upload their own virtual machine images or customize existing ones. Nimbus, next to Eucalyptus is one of the earlier frameworks that make managing virtual machines possible. Nimbus provides a basic set of cloud services including services to more easily orchestrate a cloud setup. However, Eucalyptus and OpenStack now also provide such services. 
-
+\item [Nimbus] is an open source service package allowing users to run virtual machines on FutureGrid hardware. Just as in OpenStack users can upload their own virtual machine images or customize existing ones. Nimbus, next to Eucalyptus is one of the earlier frameworks that make managing virtual machines possible. Nimbus provides a basic set of cloud services including services to orchestrate the deployment of virtual machines. However, Eucalyptus and OpenStack now also provide such services. 
 
 Nimbus provides a selected subset of AWS protocols such as EC2. Accounting of Nimbus VMs does not currently provide features for project management. Such group-based and role based user management is essential for proper administrative resource and project management and is provided by other IaaS frameworks. In Nimbus it is only conducted on a user-by-user basis. This has significant implications on user management as in large-scale deployments project management features are highly desired but are not offered in Nimbus. Although,  single users may not be interested in this feature, it is essential to provide proper project management of groups of users. 
 
@@ -311,7 +317,6 @@ Which of the IaaS frameworks to choose is a question that is not that easy to an
 \subsection{Cloud Platform as a Service (PaaS)}
 
 
-\FILE{hadoop.tex}
 
 
 \subsubsection{Map Reduce}
@@ -387,9 +392,6 @@ Twister \cite{twsiter} is an extension to MapReduce to allow more easily the int
 
 
 
-\FILE{usage.tex}
-
-
 \section{FutureGrid Usage}\label{S:usage}
 
 
@@ -426,6 +428,7 @@ To give an informal overview of the more than 300 projects conducted on FutureGr
 As part of our project management in FutureGrid we have designed a simple project application procedure that includes prior to a project being granted access, gathers information about which technologies are anticipated to be used within the project. The list of technologies is fairly extensive and includes Grid, HPC, and Cloud computing systems, services, and software. However, for this paper we will focus primarily on technologies that are dominantly requested and depicted in Figure~\ref{F:request-tech}. Clearly we can identify the trend that shows the increased popularity of OpenStack within the services offered on FutureGrid. Nimbus and Eucalyptus are on a significant downward trend. ObenNebula was also at one point more requested than either Nimbus or Eucalyptus, but due to limited manpower an official version of OpenNebula was not made available on FutureGrid. As we have not offered it and pointed it out on our Web page, requests for OpenNebula have vanished.  However internally have used OpenNebula for projects such as our Cloudmesh rain framework. All other sixteen technologies are relatively equally distributed over the monitoring period. The lesson that we took form this is that FutureGrid has put more emphasize in offering OpenStack Services recently.
 
 
+
 \begin{figure}[htb]
   \centering
     \includegraphics[width=1.0\textwidth]{images/trend-a.pdf}
@@ -457,7 +460,53 @@ As part of our project management in FutureGrid we have designed a simple projec
 From the overall project information we have also analyzed the frequency of the number of project members within the project and show it in Figure~\ref{F:project-members}. Here we depict on the abscissa classes of projects with varying members.  Assume we look at the abscissa value of 10, This means that these are all projects that have project members between 10 and its previous category in this case 5. Hence, it will be all projects greater 5 and smaller or equal 10. With this classification we see that the dominant unique number of members within all projects is either one, two or three members. Then we have another class between 4 and 10 members, and the rest with more than ten members. One of the projects had 186 registered members overall for an education class as part of a summer school. Looking at the distribution of the members and associating them with research and education projects, we find all projects with larger numbers of projects to be education projects.
 
 
+FutureGrid supports a rich set of projects, of which many are importantly related directly or indirectly to big data systems. In Table \ref{T:diversity} we list the areas of reserach and the number of projects conducted in these areas over the last two years.
 
+
+
+
+
+
+\begin{figure}[htb]
+  \centering
+    \includegraphics[height=3.5cm]{images/tech-trend-1.pdf}\includegraphics[height=3.5cm]{images/tech-trend-2.pdf}
+  \caption{Technology requests.}
+\label{F:network}
+\end{figure}
+
+
+
+\begin{table}[htb]
+\caption{FutureGrid supports a rich set of projects, of which many are importantly related directly or indirectly to big data systems.}\label{T:diversity}
+~\
+\begin{center}
+\begin{tabular}{lr}
+Domain Science & 44 \\
+Education$^{*}$ & 42\\
+Technology Evaluation & 19 \\
+Core Virtualization & 17 \\
+Programming Models & 12 \\
+Cyberinfrastructure & 11 \\ 
+Security and Privacy & 10 \\
+Data Systems & 10 \\
+Resource management & 9 \\
+Distributed Clouds and Systems & 8 \\
+Artificial Intelligence & 7 \\
+Cyber-Physical CPS and Mobile Systems & 5 \\
+Fault-Tolerance & 5 \\
+Data Analytics/Machine Learning & 5 \\
+Networking & 3 \\
+Network/Web Science & 3 \\
+Interoperability & 3 \\
+Storage & 2 \\
+Streaming Data & 2 \\
+P2P & 2 \\
+Software Engineering & 2 \\
+\end{tabular}
+\end{center}
+
+$^{*}$ 90\% of which on computer science
+\end{table}
 
 
 
@@ -498,8 +547,6 @@ Looking further into this data, we present in Figure \ref{F:trend-b} the number 
 %\afterpage{\clearpage}
 
 
-\FILE{devops.tex}
-
 
 \section{System Management}\label{S:devops}
 
@@ -522,7 +569,7 @@ FutureGrid started initially with a model where the systems team and the softwar
 \item The deployed system was complex, but its deployment was documented to a limited extent, which resulted in developers having insufficient information to utilize the system properly or to know what had been deployed..
 
 
-\item Lack of trust by the systems team did not allow the software team to have a valid development environment as proper privileges were not issued to the developers. As the development team needed to use priviliged system services, the development could not be carried out.
+\item Lack of trust by the systems team did not allow the software team to have a valid development environment as proper privileges were not issued to the developers. As the development team needed to use privileged system services, the development could not be carried out.
 
 
 \item The software developed needed a testbed within the testbed that was not necessarily reflecting the actual system setup.
@@ -567,7 +614,7 @@ This rapid change of the complex infrastructure requires a rethinking about how 
 \paragraph{DevOps Cycle.}
 
 
-While combining the steps executed by the development and operational team from planning to coding, building and testing, to the release, deployment and operation and monitoring (see Figure \ref{F:devops-circle}), each of the phases provides a direct feedback between the DevOps team members, thusshortening the entire development phase. It also allows testing out new services and technologies in a rapid progression. Hence it is possible to roll out new developments into production much faster. This leads to a much more rapidly integrated cycle than would be possible without the correlation between development and operation.
+While combining the steps executed by the development and operational team from planning to coding, building and testing, to the release, deployment and operation and monitoring (see Figure \ref{F:devops-circle}), each of the phases provides a direct feedback between the DevOps team members, thus shortening the entire development phase. It also allows testing out new services and technologies in a rapid progression. Hence it is possible to roll out new developments into production much faster. This leads to a much more rapidly integrated cycle than would be possible without the correlation between development and operation.
 
 
 \paragraph{DevOps Supporting Tools.}
@@ -589,14 +636,12 @@ A number of tools are available that make the introduction of DevOps strategies 
 \subsection{Support for Education}
 
 
-To support the many educational and research projects on FutureGrid we have provided, through a portal, significant amount of material on how to use the discussed services. In addition, we realized that not every educational project has users with advanced computer experience, therefore we provide for such projects a streamlined user interface rather than having the users fight with complex command line syntax and parameters. For example, we provided for a recent MOOC on big data taught with resources on FutureGrid the basic functionality not only to start VMs as part of the IaaS framework, but also to deploy sophisticated images that contain preinstalled software and allow services to be hosted by the users such as iPypthon, R and much more. This was implemented on top of OpenStack while utilizing the newest OpenStack services such as heat. The management of the VMs and starting of the iPython server was controlled by a python application that provides the user with a menu system. Thus, the management of them became literally as easy as pressing 1, 2, 3, ... in the menu. For other classes we also have provided completely separate OpenStack deployments as the teachers were afraid that students would not have enough resources due to the shared environment. However, we learned from this that the teachers overestimated the actual utilization of the project and many resources were not used. Based on this analysis we now have a model to justify the creation of more relaxed access policies and can justify that even classes should be utilizing the public region that are provided by FutuerGrid. If resource contention would become an issue, we could set aside a special region for a limited amount of time. Reconfiguration needs have also arisen where one day a class may want to explore traditional MPI, while the next they want to experiment with Hadoop. Furthermore, we identified that several users wanted to combine various cloud IaaS platforms in order to avoid resource overprovisioning or were interested in combining all resources. 
+To support the many educational and research projects on FutureGrid we have provided, through a portal, significant amount of material on how to use the discussed services. In addition, we realized that not every educational project has users with advanced computer experience, therefore we provide for such projects a streamlined user interface rather than having the users fight with complex command line syntax and parameters. For example, we provided for a recent MOOC on big data taught with resources on FutureGrid the basic functionality not only to start VMs as part of the IaaS framework, but also to deploy sophisticated images that contain preinstalled software and allow services to be hosted by the users such as iPypthon, R and much more. This was implemented on top of OpenStack while utilizing the newest OpenStack services such as heat. The management of the VMs and starting of the iPython server was controlled by a python application that provides the user with a menu system. Thus, the management of them became literally as easy as pressing 1, 2, 3, ... in the menu. For other classes we also have provided completely separate OpenStack deployments as the teachers were afraid that students would not have enough resources due to the shared environment. However, we learned from this that the teachers overestimated the actual utilization of the project and many resources were not used. Based on this analysis we now have a model to justify the creation of more relaxed access policies and can justify that even classes should be utilizing the public region that are provided by FutuerGrid. If resource contention would become an issue, we could set aside a special region for a limited amount of time. Reconfiguration needs have also arisen where one day a class may want to explore traditional MPI, while the next they want to experiment with Hadoop. Furthermore, we identified that several users wanted to combine various cloud IaaS platforms in order to avoid resource over-provisioning or were interested in combining all resources. 
 
 
 
 
 
-
-\FILE{cloudmesh.tex}
 
 
 \section{Cloudmesh}\label{S:cloudmesh}
@@ -677,13 +722,13 @@ FutureGrid user and project services simplify the application processes needed t
 
 
 To lower the barrier of entry Cloudmesh will be providing a shopping cart which will allow checking out of predefined repeatable experiment templates. A cost is associated with an experiment making it possible to engage in careful planning and to save time by reusing previous experiments. Additionally, the Cloudmesh App Store may function as a clearing-house of images, image templates, services offered and provisioning templates. Users may package complex deployment descriptions in an easy parameter/form-based interface and other users may be able to replicate the specified setup with.
-Due to our advanced Cloudmesh Metrics framework we are in the position to further develop an integrated accounting framework allowing a usage cost model for users and management to identify the real impact of an experiment on resources. This will be useful to avoid overprovisioning and inefficient resource usage. The cost model will be based not only on number of core hours used, but also the capabilities of the resource, the time, and special support it takes to set up the experiment. We will expand upon the metrics framework of FutureGrid that allows measuring of VM and HPC usage and associate this with cost models. Benchmarks will be used to normalize the charge models.
+Due to our advanced Cloudmesh Metrics framework we are in the position to further develop an integrated accounting framework allowing a usage cost model for users and management to identify the real impact of an experiment on resources. This will be useful to avoid over-provisioning and inefficient resource usage. The cost model will be based not only on number of core hours used, but also the capabilities of the resource, the time, and special support it takes to set up the experiment. We will expand upon the metrics framework of FutureGrid that allows measuring of VM and HPC usage and associate this with cost models. Benchmarks will be used to normalize the charge models.
 
 
 \paragraph{Networking.}
 
 
-in{ceWe have a broad vision of resource integration in FutureGridources be with systems offering different levels of control from bare metal to use of a portion of a resource. Likewise, we must utilize networks offering various levels of control, from standard IP connectivity to completely configurable SDNs as novel cloud architectures will almost certainly leverage NaaS and SDN alongside system software and middleware. FutureGrid resources will make use of SDN using OpenFlow whenever possible and the same level of networking control will not be available in every location.
+We have a broad vision of resource integration in FutureGrid offering different levels of control from bare metal to virtual machine and platform management. We also offer the ability to utilize resources in a distributed environment. Likewise, we must utilize networks offering various levels of control, from standard IP connectivity to completely configurable SDNs as novel cloud architectures will almost certainly leverage NaaS and SDN alongside system software and middleware. FutureGrid resources will make use of SDN using OpenFlow whenever possible and the same level of networking control will not be available in every location. 
 
 
 \paragraph{Monitoring.}
@@ -711,7 +756,7 @@ We have already demonstrated via the RAIN tool in Cloudmesh that it is possible 
 \subsection{Graphical User Interface}
 
 
-Despite the fact that Cloudmesh was originally a quite sophisticated command shell and command line tool, we have spend recently more time in exposing this functionality through a convenient Web interface. Some more popular views if this interface are depicted in Figure \ref{F:instances} hinting on how easy it is with a single button to create multiple VMs across a variety of IaaS. Also nice is that this not only includes resources at IU but also at external locations. Pushing this easy management in a more sophisticated experience for the user while associating one-click deployments that include the ability to deploy virtual clusters, Hadoop environments, and other more elaborate setups we provide an early prototype screenshot in Figure \ref{F:oneclick}.
+Despite the fact that Cloudmesh was originally a quite sophisticated command shell and command line tool, we have spent recently more time in exposing this functionality through a convenient Web interface. Some more popular views if this interface are depicted in Figure \ref{F:instances} hinting on how easy it is with a single button to create multiple VMs across a variety of IaaS. Also nice is that this not only includes resources at IU but also at external locations. Pushing this easy management in a more sophisticated experience for the user while associating one-click deployments that include the ability to deploy virtual clusters, Hadoop environments, and other more elaborate setups we provide an early prototype screenshot in Figure \ref{F:oneclick}.
 
 
 \begin{figure}[htb]
@@ -748,10 +793,9 @@ In this chapter we have described FutureGrid and focused on services that are be
 \section*{Acknowledgement}
 
 
-Some of the text published in this chapter is available form the FutureGrid portal. The FutureGrid project is funded by 
-
+Some of the text published in this chapter is available form the FutureGrid portal. 
 The FutureGrid project is funded by the National Science Foundation (NSF) and is led by Indiana University with University of Chicago, University of Florida, San Diego Supercomputing Center, Texas Advanced Computing Center, University of Virginia, University of Tennessee, University of Southern California, Dresden, Purdue University, and Grid 5000 as partner sites. This material is based upon work supported in part by the National Science Foundation under Grant No. 0910812 \cite{las12fg-bookchapter}. If you use FutureGrid and produce a paper or presentation, we ask you to include the reference \cite{las2010gce,las12fg-bookchapter} as well as this paper. 
-We like to thank Fugang Wang for the development of the framework that allowed us to produce the statistical data and  Hyungro Lee for assiting in the creation of the data tables that lead to the creatiion of Figures \ref{F:freq-dis} and \ref{F:trend-b}. Furthermore wi like to thank Barbara O'Leary for proofreading this paper.
+We like to thank Fugang Wang for the development of the framework that allowed us to produce the statistical data and  Hyungro Lee for assiting in the creation of the data tables that lead to the creation of Figures \ref{F:freq-dis} and \ref{F:trend-b}. Furthermore we like to thank Barbara O'Leary for proofreading this paper.
 
 %The proper citation for this chapter is … include her …
 
@@ -776,8 +820,5 @@ bib/python}
 
 
 \end{document}
-
-
-
 
 
