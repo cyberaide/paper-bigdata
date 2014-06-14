@@ -2,6 +2,7 @@ FILE=vonLaszewski-bigdata
 
 all:
 	pdflatex ${FILE}
+	makeindex ${FILE}
 	bibtex ${FILE}
 	pdflatex ${FILE}
 	pdflatex ${FILE}
